@@ -2,36 +2,31 @@
 import { render, fireEvent, screen, act } from "@testing-library/react";
 import { Provider } from "react-redux";
 import AddTodo from "./AddTodo.component";
-import { AppStore, createStore } from "../../store"; // Use the actual store
+import { AppStore, createStore } from "../../store";
 
 // Mock window.alert
 window.alert = jest.fn();
 
 describe("AddTodo Component", () => {
   let store: AppStore;
-  // Reset the store before each test
   beforeEach(() => {
+    // Reset the store before each test
     store = createStore();
-  });
 
-  it("renders correctly", () => {
+    // render before each test
     render(
       <Provider store={store}>
         <AddTodo />
       </Provider>
     );
+  });
 
+  it("renders correctly", () => {
     expect(screen.getByPlaceholderText("Enter a task")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Add" })).toBeInTheDocument();
   });
 
   it("submits the form with a valid task", async () => {
-    render(
-      <Provider store={store}>
-        <AddTodo />
-      </Provider>
-    );
-
     const input = screen.getByPlaceholderText("Enter a task");
     const button = screen.getByRole("button", { name: "Add" });
 
@@ -53,12 +48,6 @@ describe("AddTodo Component", () => {
   });
 
   it("does not submit the form with an empty task", async () => {
-    render(
-      <Provider store={store}>
-        <AddTodo />
-      </Provider>
-    );
-
     const button = screen.getByRole("button", { name: "Add" });
 
     // Simulate form submission without entering a task
@@ -75,12 +64,6 @@ describe("AddTodo Component", () => {
   });
 
   it("updates the input field correctly", async () => {
-    render(
-      <Provider store={store}>
-        <AddTodo />
-      </Provider>
-    );
-
     const input = screen.getByPlaceholderText("Enter a task");
 
     // Simulate user typing a task
