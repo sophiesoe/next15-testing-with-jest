@@ -1,10 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import store from "../../store";
+import { AppDispatch, RootState } from "../../store";
 import TodoItem from "../../commons/todo/TodoItem.common";
 import { deleteTodo } from "../../features/TodoSlice";
-
-type RootState = ReturnType<typeof store.getState>;
-type AppDispatch = typeof store.dispatch;
 
 function TodoList() {
   const dispatch = useDispatch<AppDispatch>();

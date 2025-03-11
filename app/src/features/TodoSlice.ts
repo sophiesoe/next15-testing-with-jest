@@ -8,16 +8,7 @@ interface Todo {
 
 const todoSlice = createSlice({
   name: "todos",
-  initialState: [
-    {
-      id: uuidv4(),
-      text: "Feed dog",
-    },
-    {
-      id: uuidv4(),
-      text: "Study testing",
-    },
-  ] as Todo[],
+  initialState: [] as Todo[],
   reducers: {
     addTodo: (state, action: PayloadAction<string>) => {
       state.push({ id: uuidv4(), text: action.payload });
