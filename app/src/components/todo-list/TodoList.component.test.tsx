@@ -40,6 +40,9 @@ describe("TodoList Component", () => {
 
     // Mock useDispatch to return the mockDispatch function
     (useDispatch as unknown as jest.Mock).mockReturnValue(mockDispatch);
+
+    // render the todo Lists
+    render(<TodoList />);
   });
 
   afterEach(() => {
@@ -47,16 +50,12 @@ describe("TodoList Component", () => {
   });
 
   it("renders the list of todos", () => {
-    render(<TodoList />);
-
     // Check if all todos are rendered
     expect(screen.getByText("Learn React")).toBeInTheDocument();
     expect(screen.getByText("Write Tests")).toBeInTheDocument();
   });
 
   it("calls deleteTodo when the delete button is clicked", () => {
-    render(<TodoList />);
-
     // Find the delete button for the first todo and click it
     const deleteButtons = screen.getAllByText("Delete");
     fireEvent.click(deleteButtons[0]);
