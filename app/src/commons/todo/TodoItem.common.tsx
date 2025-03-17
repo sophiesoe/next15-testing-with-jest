@@ -1,4 +1,4 @@
-type TodoProps = {
+export type TodoProps = {
   todo: {
     id: string;
     text: string;
